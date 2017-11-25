@@ -1,5 +1,7 @@
 package il.co.springmvc.services;
 
+import java.util.List;
+
 import il.co.springmvc.entities.LinesStatistics;
 
 /**
@@ -41,5 +43,12 @@ public interface LinesStatisticsServices {
      * @throws RuntimeException if something fails at the database level.
      */
     public void deleteById(LinesStatistics lineStatistic) throws RuntimeException;
+    
+    /**
+     * Returns List of LineStatistics objects.
+     * @return List of LineStatistics objects.
+     * @throws RuntimeException
+     */
+    public List<LinesStatistics> listLines() throws RuntimeException;
 
 }

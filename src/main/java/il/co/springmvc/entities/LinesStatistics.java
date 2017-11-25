@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+
 /**
  * LinesStstistics represent domain class of the SpringMVCApp project.
  * @author Artem Meleshko
@@ -18,33 +19,36 @@ import javax.persistence.Table;
 @Table(name="stat")
 public class LinesStatistics {
 	
-	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="line_id")
+	
 	private Integer line_id;
 	
-	@Column(name="longest_word")
+	
+	private String line;
+	
+	
     private String longest_word;
 	
-	@Column(name="shortest_word")
+	
 	private String shortest_word;
 	
-	@Column(name="line_length")
+	
     private Integer line_length;
     
-	@Column(name="average_w_length")
+	
     private Integer average_w_length;
     
     /**
      * Constructs and Initializes LinesStatistics.
      * @param line_id
+     * @param line
      * @param longest_word
      * @param shortest_word
      * @param line_length
      * @param average_w_length
      */
-    public LinesStatistics(Integer line_id, String longest_word, String shortest_word, Integer line_length, Integer average_w_length){
+    public LinesStatistics(Integer line_id, String line, String longest_word, String shortest_word, Integer line_length, Integer average_w_length){
         this.line_id = line_id;
+        this.line = line;
         this.longest_word = longest_word;
         this.shortest_word = shortest_word;
         this.line_length = line_length;
@@ -58,6 +62,9 @@ public class LinesStatistics {
     /**
 	 * @return the line_id
 	 */
+    @Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(name="line_id")
 	public Integer getLine_id() {
 		return line_id;
 	}
@@ -68,10 +75,26 @@ public class LinesStatistics {
 	public void setLine_id(Integer line_id) {
 		this.line_id = line_id;
 	}
+	
+	/**
+	 * @return the line
+	 */
+	@Column(name="line")
+	public String getLine() {
+		return line;
+	}
+
+	/**
+	 * @param line the line to set
+	 */
+	public void setLine(String line) {
+		this.line = line;
+	}
 
 	/**
 	 * @return the longest_word
 	 */
+	@Column(name="longest_word")
 	public String getLongest_word() {
 		return longest_word;
 	}
@@ -86,6 +109,7 @@ public class LinesStatistics {
 	/**
 	 * @return the shortest_word
 	 */
+	@Column(name="shortest_word")
 	public String getShortest_word() {
 		return shortest_word;
 	}
@@ -100,6 +124,7 @@ public class LinesStatistics {
 	/**
 	 * @return the line_length
 	 */
+	@Column(name="line_length")
 	public Integer getLine_length() {
 		return line_length;
 	}
@@ -114,6 +139,7 @@ public class LinesStatistics {
 	/**
 	 * @return the average_w_length
 	 */
+	@Column(name="average_w_length")
 	public Integer getAverage_w_length() {
 		return average_w_length;
 	}

@@ -3,8 +3,11 @@
  */
 package il.co.springmvc.servicesimpl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import il.co.springmvc.dao.LinesStatisticsDAO;
 import il.co.springmvc.entities.LinesStatistics;
@@ -16,7 +19,8 @@ import il.co.springmvc.services.LinesStatisticsServices;
  * @version 1.0 2017
  *
  */
-@Service
+@Service("linesService")
+//@Transactional
 public class LinesStatisticsServicesImpl implements LinesStatisticsServices {
 	
 	@Autowired
@@ -40,6 +44,11 @@ public class LinesStatisticsServicesImpl implements LinesStatisticsServices {
 	@Override
 	public void deleteById(LinesStatistics lineStatistic) throws RuntimeException {
 		lineDAO.deleteById(lineStatistic);
+	}
+
+	@Override
+	public List<LinesStatistics> listLines() throws RuntimeException {
+		return lineDAO.listLines();
 	}
 
 }

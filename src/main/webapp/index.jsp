@@ -14,6 +14,9 @@ pageEncoding="ISO-8859-1"%>
 		<h3>
 			<a href="hello?name=Artem">Click Here</a>
 		</h3>
+		<h3>
+			<a href="page">Go to the Page</a>
+		</h3>
 	</center>
 </body>
 </html>

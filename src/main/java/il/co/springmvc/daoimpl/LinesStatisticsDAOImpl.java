@@ -1,6 +1,12 @@
 package il.co.springmvc.daoimpl;
 
+import java.util.List;
+
+import javax.persistence.Query;
+
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,35 +19,66 @@ import il.co.springmvc.entities.LinesStatistics;
  * @author Artem Meleshko
  * @version 1.0 2017
  */
-@Repository
+@Repository("linesDAO")
 @Transactional
 public class LinesStatisticsDAOImpl implements LinesStatisticsDAO{
 	
 	@Autowired
-	SessionFactory session;
-
+	private SessionFactory sessionFactory;
+	
 	@Override
 	public LinesStatistics findId(Integer line_id) throws RuntimeException {
 		LinesStatistics line = new LinesStatistics();
-		line = (LinesStatistics) session.getCurrentSession().get(LinesStatistics.class, line_id);
+		line = (LinesStatistics) sessionFactory.openSession().get(LinesStatistics.class, line_id);
 		return line;
 	}
 
 	@Override
+	@Transactional
 	public void createLineStatistic(LinesStatistics lineStatistic) throws RuntimeException {
-		session.getCurrentSession().saveOrUpdate(lineStatistic);
+		sessionFactory.openSession().saveOrUpdate(lineStatistic);
 		
 	}
 
 	@Override
 	public void updateLineStatistic(LinesStatistics lineStatistic) throws IllegalArgumentException, RuntimeException {
-		session.getCurrentSession().saveOrUpdate(lineStatistic);
+		sessionFactory.openSession().saveOrUpdate(lineStatistic);
 		
 	}
 
 	@Override
+	@Transactional
 	public void deleteById(LinesStatistics lineStatistic) throws RuntimeException {
-		session.getCurrentSession().delete(lineStatistic);
+		//sessionFactory.openSession().createQuery("DELETE FROM LinesStatistics u WHERE u.line_id='" + lineStatistic.getLine_id() + "'");
+		Transaction tx=null;
+		Session session = null;
+		try {
+		session = sessionFactory.openSession();
+		tx = session.beginTransaction();
+		session.delete(lineStatistic);
+		tx.commit();
+		} catch (Exception e) {
+	        e.printStackTrace();
+	    } finally {
+
+	        if (!tx.wasCommitted()) {
+	           tx.rollback();
+	        }//not much doing but a good practice
+	        session.flush(); //this is where I think things will start working.
+	        session.close();
+	    }
+		
+//		Session session = sessionFactory.openSession();
+//		Query query =  (Query) session.createQuery("delete from stat u where u.line_id ='" + lineStatistic.getLine_id() +"'");
+//		query.executeUpdate();
+//	    session.close();
+
+	}
+
+	@Override
+	public List<LinesStatistics> listLines() throws RuntimeException {
+		return sessionFactory.openSession().createCriteria(LinesStatistics.class).list();
+		//return session.getCurrentSession().createQuery("from stat").list();
 		
 	}
 

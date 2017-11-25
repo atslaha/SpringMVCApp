@@ -1,5 +1,7 @@
 package il.co.springmvc.dao;
 
+import java.util.List;
+
 import il.co.springmvc.entities.LinesStatistics;
 
 /**
@@ -35,12 +37,18 @@ public interface LinesStatisticsDAO {
     public void updateLineStatistic(LinesStatistics lineStatistic) throws IllegalArgumentException, RuntimeException;
     
     /**
-     * Deletes user from the database matching with the given email.
-     * @param connect (Connection) object with already existed connection to the database.
-     * @param email user's email.
+     * Deletes lines from the database matching with the given instance of LineStatistics.
+     * @param lineStatistics is an instance of LineStatistics class.
      * @throws RuntimeException if something fails at the database level.
      */
     public void deleteById(LinesStatistics lineStatistic) throws RuntimeException;
+    
+    /**
+     * Returns List of LinesStatistics objects from database.
+     * @return List of LinesStatistics objects from database.
+     * @throws RuntimeException.
+     */
+    public List<LinesStatistics> listLines() throws RuntimeException;
 
 
 }
