@@ -49,7 +49,6 @@ public class LinesStatisticsDAOImpl implements LinesStatisticsDAO{
 	@Override
 	@Transactional
 	public void deleteById(LinesStatistics lineStatistic) throws RuntimeException {
-		//sessionFactory.openSession().createQuery("DELETE FROM LinesStatistics u WHERE u.line_id='" + lineStatistic.getLine_id() + "'");
 		Transaction tx=null;
 		Session session = null;
 		try {
@@ -63,15 +62,10 @@ public class LinesStatisticsDAOImpl implements LinesStatisticsDAO{
 
 	        if (!tx.wasCommitted()) {
 	           tx.rollback();
-	        }//not much doing but a good practice
-	        session.flush(); //this is where I think things will start working.
+	        }
+	        session.flush(); 
 	        session.close();
 	    }
-		
-//		Session session = sessionFactory.openSession();
-//		Query query =  (Query) session.createQuery("delete from stat u where u.line_id ='" + lineStatistic.getLine_id() +"'");
-//		query.executeUpdate();
-//	    session.close();
 
 	}
 
