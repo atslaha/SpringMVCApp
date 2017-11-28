@@ -62,7 +62,7 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd">
          <prop key="hibernate.format_sql">true</prop>
 
 	<!--     create , update -->
-	    <prop key="hibernate.hbm2ddl.auto">update</prop>  
+	    <prop key="hibernate.hbm2ddl.auto">create</prop>  
 	
 	  
 	    <!-- JDBC connection pool (use the built-in) -->

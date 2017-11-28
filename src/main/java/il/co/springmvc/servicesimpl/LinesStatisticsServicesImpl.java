@@ -20,7 +20,6 @@ import il.co.springmvc.services.LinesStatisticsServices;
  *
  */
 @Service("linesService")
-//@Transactional
 public class LinesStatisticsServicesImpl implements LinesStatisticsServices {
 	
 	@Autowired

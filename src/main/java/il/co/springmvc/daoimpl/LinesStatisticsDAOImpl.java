@@ -2,8 +2,6 @@ package il.co.springmvc.daoimpl;
 
 import java.util.List;
 
-import javax.persistence.Query;
-
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -36,8 +34,8 @@ public class LinesStatisticsDAOImpl implements LinesStatisticsDAO{
 	@Override
 	@Transactional
 	public void createLineStatistic(LinesStatistics lineStatistic) throws RuntimeException {
-		sessionFactory.openSession().saveOrUpdate(lineStatistic);
-		
+		Session session = sessionFactory.openSession();
+		session.save(lineStatistic);
 	}
 
 	@Override
@@ -69,6 +67,7 @@ public class LinesStatisticsDAOImpl implements LinesStatisticsDAO{
 
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<LinesStatistics> listLines() throws RuntimeException {
 		return sessionFactory.openSession().createCriteria(LinesStatistics.class).list();

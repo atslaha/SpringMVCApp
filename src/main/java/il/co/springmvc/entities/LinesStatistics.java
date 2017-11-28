@@ -21,20 +21,10 @@ public class LinesStatistics {
 	
 	
 	private Integer line_id;
-	
-	
 	private String line;
-	
-	
-    private String longest_word;
-	
-	
+	private String longest_word;
 	private String shortest_word;
-	
-	
-    private Integer line_length;
-    
-	
+	private Integer line_length;
     private Integer average_w_length;
     
     /**

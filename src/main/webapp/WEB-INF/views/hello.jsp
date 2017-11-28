@@ -7,6 +7,22 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+
+<style>
+   tr:first-child{
+       font-weight: bold;
+       background-color: #C6C9C4;
+   }
+   
+   table {
+    border-collapse: collapse;
+}
+
+table, th, td {
+    border: 1px solid black;
+}
+</style>
+
 </head>
 <body>
 	<center>
@@ -22,7 +38,7 @@
     </center>
         
         <form method="POST" action="uploadFile" enctype="multipart/form-data">
-        File to upload: <input type="file" name="file"><br />
+        File to upload: <input type="file" name="file" accept="text/plain"><br />
 		Name: <input type="text" name="name"><br />
 		<input type="submit" value="Upload"> Press here to upload the file!
 	    </form>	
@@ -31,6 +47,30 @@
 			${message} ${name} 
 		</h3>
 		
+		<a href="parse"> Parse File</a> <a href="list"> Show Lines Statistics</a>
+		<form method="get" action="/parse">
+		<input type="button"  onclick="location.href='parse'" value="Parse File" >
+		</form>
+		<h3>${messageEx}</h3>
+		
+		
+		
+		<h2>List of Lines</h2>  
+    <table>
+        <tr>
+            <td width="700px">Line<td>Longest word</td><td>Shortest word</td><td>Line Length</td><td>Average Word Length</td><td  width="40px"></td>
+        </tr>
+        <c:forEach items="${listLines}" var="listLine">
+            <tr>
+            <td>${listLine.line}</td>
+            <td>${listLine.longest_word}</td>
+            <td>${listLine.shortest_word}</td>
+            <td>${listLine.line_length}</td>
+            <td>${listLine.average_w_length}</td>
+            <td><a href="<c:url value='/delete-${listLine.line_id}-line' />">delete</a></td>
+            </tr>
+        </c:forEach>
+    </table>
 	
 
 </body>
