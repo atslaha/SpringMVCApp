@@ -40,40 +40,22 @@ public class LinesStatisticsController {
 	@Autowired
 	LinesStatisticsServices service;
 	
+	/**
+	 * Path of the File on the server.
+	 */
 	@Autowired
 	LongestAndShortestWord longestAndShortestWord;
 	
-	@RequestMapping(value= { "/page" } , method = RequestMethod.GET)
+	
+	/**
+	 * 
+	 * @return base page hello.jsp
+	 */
+	@RequestMapping(value= {"/", "/page" } , method = RequestMethod.GET)
 	public ModelAndView getPage(){
 		ModelAndView view = new ModelAndView("hello");
 		System.out.println("in controller get");
 				return view;
-	}
-	
-	@RequestMapping(value= { "/page" } , method = RequestMethod.POST)
-	public ModelAndView postPage(@RequestParam(value = "text", required = false, defaultValue = "Try again!)") String text) {
-		
-		ModelAndView view = new ModelAndView("hello");
-		view.addObject("text", text);
-		
-		System.out.println("in controller post");
-		
-		LinesStatistics lines = new LinesStatistics();
-		lines.setLine("kdfav akdfgn kasndf");
-		lines.setLine_length(54);
-		lines.setAverage_w_length(23);
-		lines.setLongest_word("Longest");
-		lines.setShortest_word("Shortest");
-		
-		service.createLineStatistic(lines);
-		
-//		lines = service.findId(4);
-//		System.out.println(lines);
-//
-//		service.deleteById(lines);
-//		System.out.println("GO");
-		
-		return view;
 	}
 	
 	/**
@@ -123,6 +105,9 @@ public class LinesStatisticsController {
 		}
 	}
 	
+	/**
+	 * Parse the File.
+	 */
 	@RequestMapping(value = "/parse", method = RequestMethod.GET)
     public @ResponseBody ModelAndView handleParse(HttpServletRequest request,
             HttpServletResponse response) throws Exception {

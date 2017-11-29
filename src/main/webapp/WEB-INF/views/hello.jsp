@@ -7,58 +7,47 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-
-<style>
+<style type="text/css">
    tr:first-child{
        font-weight: bold;
-       background-color: #C6C9C4;
-   }
+       background-color: #C6C9C4;}
+       
+   input {
+     margin: 5px 0;}
    
    table {
-    border-collapse: collapse;
-}
+    border-collapse: collapse;}
 
-table, th, td {
-    border: 1px solid black;
-}
+  table, th, td {
+      border: 1px solid black;}
+  
+  div{
+    max-width:400px;
+    margin: left;
+    border: 1px solid black;}
 </style>
 
 </head>
 <body>
-	<center>
-		<h2>Hello new page!)))</h2>
-		<form action="page" method="POST">
-		      Text: <input type="text" name="text" /><br />
-		      <input type="submit" value="Submit" />
-        </form>
-        
-        <h2>
-             ${text}
-        </h2>
-    </center>
-        
-        <form method="POST" action="uploadFile" enctype="multipart/form-data">
+	<div>
+	    <form  method="POST" action="uploadFile" enctype="multipart/form-data">
         File to upload: <input type="file" name="file" accept="text/plain"><br />
 		Name: <input type="text" name="name"><br />
 		<input type="submit" value="Upload"> Press here to upload the file!
-	    </form>	
+	    </form>
+	</div>	
 		
 		<h3>
 			${message} ${name} 
 		</h3>
 		
-		<a href="parse"> Parse File</a> <a href="list"> Show Lines Statistics</a>
-		<form method="get" action="/parse">
-		<input type="button"  onclick="location.href='parse'" value="Parse File" >
-		</form>
+		<a href="parse"> Parse File</a> <a href="list">  Show Lines Statistics</a>
 		<h3>${messageEx}</h3>
-		
-		
 		
 		<h2>List of Lines</h2>  
     <table>
         <tr>
-            <td width="700px">Line<td>Longest word</td><td>Shortest word</td><td>Line Length</td><td>Average Word Length</td><td  width="40px"></td>
+            <td width="700px">Lines<td>Longest word</td><td>Shortest word</td><td>Line Length</td><td>Average Word Length</td><td width="40px"></td>
         </tr>
         <c:forEach items="${listLines}" var="listLine">
             <tr>
