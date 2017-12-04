@@ -22,7 +22,7 @@
       border: 1px solid black;}
   
   div{
-    max-width:400px;
+    max-width:300px;
     margin: left;
     border: 1px solid black;}
 </style>
