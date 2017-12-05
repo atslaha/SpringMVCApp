@@ -17,7 +17,7 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 	<context:component-scan base-package="il.co.springmvc" /> 
 	<context:annotation-config/>
 	<mvc:annotation-driven/>
-	<mvc:resources location="/resources/**" mapping="/resources/"/>
+	<mvc:resources location="/resources/" mapping="/resources/**"/>
 	<tx:annotation-driven transaction-manager="transactionManager" />
  
 	<bean
